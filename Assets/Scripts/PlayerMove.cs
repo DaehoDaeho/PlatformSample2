@@ -26,6 +26,9 @@ public class PlayerMove : MonoBehaviour
     private int frame = 0;  // 현재 애니메이션 프레임.
     private float timer = 0.0f; // 다음 동작까지의 시간을 재기 위한 타이머 변수.
     public float frameRate = 0.15f; // 현재 동작에서 다음 동작까지 걸리는 시간.
+
+    private bool isKnockback = false;   // 현재 플레이어 캐릭터가 넉백을 당하고 있는 중인지.
+    private float knockbackTimer = 0f;  // 넉백을 적용할 시간을 재기 위한 타이머.
     //===========================================
 
     // 이동 속도.
@@ -46,6 +49,8 @@ public class PlayerMove : MonoBehaviour
     private bool isGrounded = true;
 
     public AudioSource jumpSound;
+
+    private int hp = 100;
 
     private void Awake()
     {
@@ -81,72 +86,77 @@ public class PlayerMove : MonoBehaviour
         sr.sprite = curArr[frame];
     }
 
+    // 공격 당할 때 몬스터가 호출
+    public void TakeDamage(int damage, Vector2 knockbackDir, float knockbackForce, float knockbackTime)
+    {
+        // 체력 감소 등은 여기에!
+        // 예시: hp -= damage;
+        hp -= damage;
+
+        // 넉백 처리
+        isKnockback = true;
+        knockbackTimer = knockbackTime;
+        rb.velocity = knockbackDir.normalized * knockbackForce;
+    }
+
     // Update is called once per frame
     void Update()
-    {
-        isGrounded = IsGrounded();
-
-        if (isGrounded == true)
+    {   
+        if(isKnockback == false)
         {
-            state = AnimState.Idle;
-        }
+            isGrounded = IsGrounded();
 
-        moveInput = Input.GetAxisRaw("Horizontal");
-
-        float scaleX = Mathf.Abs(gameObject.transform.localScale.x);
-        bool isMove = true;
-        if (moveInput > 0.01f)
-        {
-            moveText.text = "Move to Right";
-            gameObject.transform.localScale = new Vector3(scaleX, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-
-            if(state != AnimState.Jump)
-            {
-                state = AnimState.Move;
-            }
-        }
-        else if(moveInput < -0.01f)
-        {
-            moveText.text = "Move to Left";
-            gameObject.transform.localScale = new Vector3(-scaleX, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-
-            if (state != AnimState.Jump)
-            {
-                state = AnimState.Move;
-            }
-        }
-        else
-        {
-            moveText.text = "Not Move";
-            isMove = false;
-
-            if(state != AnimState.Jump)
+            if (isGrounded == true)
             {
                 state = AnimState.Idle;
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            Jump();
-        }
+            moveInput = Input.GetAxisRaw("Horizontal");
 
-        //RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, 3.0f);
-        //if (hit.collider.gameObject.tag == "Ground")
-        //{
-        //    isGrounded = true;
-        //    animator.SetBool("IsJump", false);
-        //}
+            float scaleX = Mathf.Abs(gameObject.transform.localScale.x);
+            bool isMove = true;
+            if (moveInput > 0.01f)
+            {
+                moveText.text = "Move to Right";
+                gameObject.transform.localScale = new Vector3(scaleX, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
+                if (state != AnimState.Jump)
+                {
+                    state = AnimState.Move;
+                }
+            }
+            else if (moveInput < -0.01f)
+            {
+                moveText.text = "Move to Left";
+                gameObject.transform.localScale = new Vector3(-scaleX, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
-        //animator.SetBool("IsMove", isMove);
-        //animator.SetBool("IsJump", !isGrounded);
+                if (state != AnimState.Jump)
+                {
+                    state = AnimState.Move;
+                }
+            }
+            else
+            {
+                moveText.text = "Not Move";
+                isMove = false;
 
-        timer += Time.deltaTime;
-        if (timer >= frameRate)
-        {
-            timer = 0.0f;
-            PlayAnimation();
+                if (state != AnimState.Jump)
+                {
+                    state = AnimState.Idle;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            {
+                Jump();
+            }           
+
+            timer += Time.deltaTime;
+            if (timer >= frameRate)
+            {
+                timer = 0.0f;
+                PlayAnimation();
+            }
         }
     }
 
@@ -163,8 +173,20 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // 물리엔진을 이용한 이동 처리
-        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);        
+        if (isKnockback)
+        {
+            knockbackTimer -= Time.deltaTime;
+            if (knockbackTimer <= 0)
+            {
+                isKnockback = false;
+                rb.velocity = Vector2.zero;
+                state = AnimState.Idle;
+            }
+        }
+        else
+        {
+            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+        }
     }
 
     private bool IsGrounded()

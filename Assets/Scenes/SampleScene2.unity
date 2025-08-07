@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 289582691}
   - component: {fileID: 289582696}
   m_Layer: 0
-  m_Name: Circle (2)
+  m_Name: Monster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -856,6 +856,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db70944592f4cb44922a414306d54bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleSprites:
+  - {fileID: -6367560908665664636, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: -6056987297122131021, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: 8416797952724722639, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: 4883129791460916795, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: 4278371960119211202, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: 8644832591467991550, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: -7152759390613953277, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: 6456874251884481089, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: -2526832996998184344, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: 4392827059107796345, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: -1363835404106015672, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  attackSprites:
+  - {fileID: 7166236263522030466, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: 2470319409956435798, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: -4540918584354326388, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: -4455822056875728695, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: -5364790588639958657, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: -1512656188830553638, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: -2754230144694611447, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: -2419971920513260168, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: 1843850012483549754, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: 241620830004830169, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: -362971539341918764, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  - {fileID: 2178398316516280758, guid: 552146dbb8bac6f449493bca4b69540f, type: 3}
+  frameRate: 0.15
   speed: 2
   moveTime: 2
   target: {fileID: 187886726}
@@ -900,7 +926,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -6367560908665664636, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -920,14 +946,14 @@ Transform:
   m_GameObject: {fileID: 289582690}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.210344, y: -0.94, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 19.210344, y: -0.81, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &289582696
-CircleCollider2D:
+--- !u!61 &289582696
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -955,12 +981,22 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.32, y: 0.32}
+  m_EdgeRadius: 0
 --- !u!1001 &314267062
 PrefabInstance:
   m_ObjectHideFlags: 0
