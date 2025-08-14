@@ -24,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     private SpriteRenderer sr;  // 스프라이트 렌더러 컴포넌트.
 
     private int frame = 0;  // 현재 애니메이션 프레임.
+        
     private float timer = 0.0f; // 다음 동작까지의 시간을 재기 위한 타이머 변수.
     public float frameRate = 0.15f; // 현재 동작에서 다음 동작까지 걸리는 시간.
 
