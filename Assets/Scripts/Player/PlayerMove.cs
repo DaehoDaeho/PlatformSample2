@@ -13,20 +13,22 @@ public enum AnimState
 
 public class PlayerMove : MonoBehaviour
 {
+    public Animator animator;
+
     //========== 애니메이션 관련 변수들 ==========
-    public Sprite[] idleSprites;    // 대기 상태의 애니메이션에 사용할 스프라이트들의 배열.
-    public Sprite[] moveSprites;    // 이동 상태의 애니메이션에 사용할 스프라이트들의 배열.
-    public Sprite[] jumpSprites;    // 점프 상태의 애니메이션에 사용할 스프라이트들의 배열.
-    public Sprite[] dieSprites; // 사망 상태의 애니메이션에 사용할 스프라이트들의 배열.
+    //public Sprite[] idleSprites;    // 대기 상태의 애니메이션에 사용할 스프라이트들의 배열.
+    //public Sprite[] moveSprites;    // 이동 상태의 애니메이션에 사용할 스프라이트들의 배열.
+    //public Sprite[] jumpSprites;    // 점프 상태의 애니메이션에 사용할 스프라이트들의 배열.
+    //public Sprite[] dieSprites; // 사망 상태의 애니메이션에 사용할 스프라이트들의 배열.
 
     private AnimState state = AnimState.Idle;   // 현재 동작 상태를 저장.
 
     private SpriteRenderer sr;  // 스프라이트 렌더러 컴포넌트.
 
-    private int frame = 0;  // 현재 애니메이션 프레임.
+    //private int frame = 0;  // 현재 애니메이션 프레임.
         
-    private float timer = 0.0f; // 다음 동작까지의 시간을 재기 위한 타이머 변수.
-    public float frameRate = 0.15f; // 현재 동작에서 다음 동작까지 걸리는 시간.
+    //private float timer = 0.0f; // 다음 동작까지의 시간을 재기 위한 타이머 변수.
+    //public float frameRate = 0.15f; // 현재 동작에서 다음 동작까지 걸리는 시간.
 
     private bool isKnockback = false;   // 현재 플레이어 캐릭터가 넉백을 당하고 있는 중인지.
     private float knockbackTimer = 0f;  // 넉백을 적용할 시간을 재기 위한 타이머.
@@ -42,7 +44,6 @@ public class PlayerMove : MonoBehaviour
     private float moveInput = 0.0f;
 
     public TextMeshProUGUI moveText;
-    public Animator animator;
     
     public GameObject groundCheck;
     public LayerMask groundLayer;
@@ -61,30 +62,30 @@ public class PlayerMove : MonoBehaviour
 
     void PlayAnimation()
     {
-        Sprite[] curArr = idleSprites;
-        switch (state)
-        {
-            case AnimState.Move:
-                {
-                    curArr = moveSprites;
-                }
-                break;
+        //Sprite[] curArr = idleSprites;
+        //switch (state)
+        //{
+        //    case AnimState.Move:
+        //        {
+        //            curArr = moveSprites;
+        //        }
+        //        break;
 
-            case AnimState.Jump:
-                {
-                    curArr = jumpSprites;
-                }
-                break;
+        //    case AnimState.Jump:
+        //        {
+        //            curArr = jumpSprites;
+        //        }
+        //        break;
 
-            case AnimState.Die:
-                {
-                    curArr = dieSprites;
-                }
-                break;
-        }
+        //    case AnimState.Die:
+        //        {
+        //            curArr = dieSprites;
+        //        }
+        //        break;
+        //}
 
-        frame = (frame + 1) % curArr.Length;
-        sr.sprite = curArr[frame];
+        //frame = (frame + 1) % curArr.Length;
+        //sr.sprite = curArr[frame];
     }
 
     // 공격 당할 때 몬스터가 호출
@@ -107,10 +108,10 @@ public class PlayerMove : MonoBehaviour
         {
             isGrounded = IsGrounded();
 
-            if (isGrounded == true)
-            {
-                state = AnimState.Idle;
-            }
+            //if (isGrounded == true)
+            //{
+            //    state = AnimState.Idle;
+            //}
 
             moveInput = Input.GetAxisRaw("Horizontal");
 
@@ -121,30 +122,30 @@ public class PlayerMove : MonoBehaviour
                 moveText.text = "Move to Right";
                 gameObject.transform.localScale = new Vector3(scaleX, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
-                if (state != AnimState.Jump)
-                {
-                    state = AnimState.Move;
-                }
+                //if (state != AnimState.Jump)
+                //{
+                //    state = AnimState.Move;
+                //}
             }
             else if (moveInput < -0.01f)
             {
                 moveText.text = "Move to Left";
                 gameObject.transform.localScale = new Vector3(-scaleX, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
-                if (state != AnimState.Jump)
-                {
-                    state = AnimState.Move;
-                }
+                //if (state != AnimState.Jump)
+                //{
+                //    state = AnimState.Move;
+                //}
             }
             else
             {
                 moveText.text = "Not Move";
                 isMove = false;
 
-                if (state != AnimState.Jump)
-                {
-                    state = AnimState.Idle;
-                }
+                //if (state != AnimState.Jump)
+                //{
+                //    state = AnimState.Idle;
+                //}
             }
 
             //if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -152,12 +153,14 @@ public class PlayerMove : MonoBehaviour
             //    Jump();
             //}           
 
-            timer += Time.deltaTime;
-            if (timer >= frameRate)
-            {
-                timer = 0.0f;
-                PlayAnimation();
-            }
+            //timer += Time.deltaTime;
+            //if (timer >= frameRate)
+            //{
+            //    timer = 0.0f;
+            //    PlayAnimation();
+            //}
+
+            animator.SetBool("Move", isMove);
         }
     }
 
@@ -165,11 +168,9 @@ public class PlayerMove : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        //rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         isGrounded = false;
-        //animator.SetBool("IsJump", true);
         jumpSound.Play();
-        state = AnimState.Jump;
+        //state = AnimState.Jump;
     }
 
     private void FixedUpdate()
@@ -181,7 +182,7 @@ public class PlayerMove : MonoBehaviour
             {
                 isKnockback = false;
                 rb.velocity = Vector2.zero;
-                state = AnimState.Idle;
+                //state = AnimState.Idle;
             }
         }
         else

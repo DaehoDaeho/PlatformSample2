@@ -9,6 +9,8 @@ using UnityEngine;
 [RequireComponent(typeof(GroundCheck2D))]
 public class PlayerJumpController : MonoBehaviour
 {
+    public Animator animator;
+
     [Header("입력")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
 
@@ -53,7 +55,11 @@ public class PlayerJumpController : MonoBehaviour
 
         // 2) 점프 입력 시각 기록
         if (Input.GetKeyDown(jumpKey))
+        {
             lastJumpPressedTime = Time.time;
+            animator.SetTrigger("Jump");
+        }
+            
 
         // 3) 코요테/버퍼 조건 확인 → 점프 예약
         bool canCoyote = Time.time - lastGroundedTime <= coyoteTime;
