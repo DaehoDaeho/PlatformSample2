@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: 179003291}
   - component: {fileID: 179003290}
   - component: {fileID: 179003289}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -691,7 +691,9 @@ GameObject:
   - component: {fileID: 187886730}
   - component: {fileID: 187886732}
   - component: {fileID: 187886731}
-  m_Layer: 0
+  - component: {fileID: 187886734}
+  - component: {fileID: 187886733}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -721,9 +723,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &187886725
 SpriteRenderer:
@@ -843,7 +845,7 @@ MonoBehaviour:
   groundCheck: {fileID: 873175877}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 8
   jumpSound: {fileID: 118587266}
 --- !u!114 &187886728
 MonoBehaviour:
@@ -946,6 +948,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b20a3670f98f747aaf6522dc5a56c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &187886733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187886722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49cf4b4b159385840be73ae4d1fe0052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpKey: 32
+  jumpVelocity: 12
+  coyoteTime: 0.1
+  jumpBufferTime: 0.1
+  fallGravityMultiplier: 1.8
+  lowJumpGravityMultiplier: 2
+  maxFallSpeed: 20
+--- !u!114 &187886734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187886722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17bb578c6bab60142b3417d4f11ceed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feetOffset: {x: 0, y: -0.8}
+  rayLength: 0.1
+  raySpacing: 0.25
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &238543312
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,7 +2376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 873175878}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3421,7 +3460,7 @@ GameObject:
   - component: {fileID: 1589647002}
   - component: {fileID: 1589647001}
   - component: {fileID: 1589647000}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -4550,11 +4589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7d8287a39e9eb41b1926c6da6ecaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
-  gender: 0
-  hp: 0
-  attackPower: 0
-  defensePower: 0
 --- !u!4 &2105809962
 Transform:
   m_ObjectHideFlags: 0

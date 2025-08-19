@@ -147,10 +147,10 @@ public class PlayerMove : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            {
-                Jump();
-            }           
+            //if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            //{
+            //    Jump();
+            //}           
 
             timer += Time.deltaTime;
             if (timer >= frameRate)

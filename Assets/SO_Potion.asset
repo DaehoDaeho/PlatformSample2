@@ -18,6 +18,6 @@ MonoBehaviour:
   stackable: 1
   maxStack: 9
   usable: 1
-  useEffect: {fileID: 0}
+  useEffect: {fileID: 11400000, guid: 7c76fe91f48685449be77ed86d5d0317, type: 2}
   useSfx: {fileID: 0}
   useVfxPrefab: {fileID: 0}
