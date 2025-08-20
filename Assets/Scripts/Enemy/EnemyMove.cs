@@ -45,6 +45,7 @@ public class EnemyMove : MonoBehaviour
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        target = FindAnyObjectByType<PlayerMove>().transform;
     }
 
     // Update is called once per frame

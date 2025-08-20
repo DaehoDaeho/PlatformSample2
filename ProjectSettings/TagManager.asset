@@ -17,8 +17,8 @@ TagManager:
   - UI
   - IgnoreCollision
   - Player
-  - 
-  - 
+  - Hitbox_Player
+  - Hurtbox_Enemy
   - 
   - 
   - 
