@@ -54,10 +54,13 @@ public class PlayerMove : MonoBehaviour
 
     private int hp = 100;
 
+    PlayerHealthSimple playerHealth;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        playerHealth = GetComponent<PlayerHealthSimple>();
     }
 
     void PlayAnimation()
@@ -103,15 +106,15 @@ public class PlayerMove : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
-        if(isKnockback == false)
+    {
+        if(playerHealth != null && playerHealth.IsInHitStun() == true)
+        {
+            return;
+        }
+
+        //if(isKnockback == false)
         {
             isGrounded = IsGrounded();
-
-            //if (isGrounded == true)
-            //{
-            //    state = AnimState.Idle;
-            //}
 
             moveInput = Input.GetAxisRaw("Horizontal");
 
@@ -121,44 +124,17 @@ public class PlayerMove : MonoBehaviour
             {
                 moveText.text = "Move to Right";
                 gameObject.transform.localScale = new Vector3(scaleX, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-
-                //if (state != AnimState.Jump)
-                //{
-                //    state = AnimState.Move;
-                //}
             }
             else if (moveInput < -0.01f)
             {
                 moveText.text = "Move to Left";
                 gameObject.transform.localScale = new Vector3(-scaleX, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-
-                //if (state != AnimState.Jump)
-                //{
-                //    state = AnimState.Move;
-                //}
             }
             else
             {
                 moveText.text = "Not Move";
                 isMove = false;
-
-                //if (state != AnimState.Jump)
-                //{
-                //    state = AnimState.Idle;
-                //}
             }
-
-            //if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            //{
-            //    Jump();
-            //}           
-
-            //timer += Time.deltaTime;
-            //if (timer >= frameRate)
-            //{
-            //    timer = 0.0f;
-            //    PlayAnimation();
-            //}
 
             animator.SetBool("Move", isMove);
         }
@@ -175,15 +151,17 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isKnockback)
+        if(playerHealth != null && playerHealth.IsInHitStun() == true)
+        //if (isKnockback)
         {
-            knockbackTimer -= Time.deltaTime;
-            if (knockbackTimer <= 0)
-            {
-                isKnockback = false;
-                rb.velocity = Vector2.zero;
-                //state = AnimState.Idle;
-            }
+            //knockbackTimer -= Time.deltaTime;
+            //if (knockbackTimer <= 0)
+            //{
+            //    isKnockback = false;
+            //    rb.velocity = Vector2.zero;
+            //    //state = AnimState.Idle;
+            //}
+            //rb.velocity = Vector2.zero;
         }
         else
         {
