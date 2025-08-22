@@ -152,21 +152,11 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         if(playerHealth != null && playerHealth.IsInHitStun() == true)
-        //if (isKnockback)
         {
-            //knockbackTimer -= Time.deltaTime;
-            //if (knockbackTimer <= 0)
-            //{
-            //    isKnockback = false;
-            //    rb.velocity = Vector2.zero;
-            //    //state = AnimState.Idle;
-            //}
-            //rb.velocity = Vector2.zero;
+            return;
         }
-        else
-        {
-            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-        }
+
+        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
     }
 
     private bool IsGrounded()
