@@ -19,7 +19,7 @@ TagManager:
   - Player
   - Hitbox_Player
   - Hurtbox_Enemy
-  - 
+  - OneWayPlatform
   - 
   - 
   - 

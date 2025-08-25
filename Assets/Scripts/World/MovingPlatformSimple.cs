@@ -1,6 +1,9 @@
 // Assets/Scripts/World/MovingPlatformSimple.cs
 using UnityEngine;
 
+/// <summary>
+/// 두 위치 사이를 왕복 + 도착 시 잠깐 대기.
+/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovingPlatformSimple : MonoBehaviour
 {

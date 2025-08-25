@@ -6,9 +6,10 @@ using UnityEngine;
 public class PlayerDropThroughOneWay : MonoBehaviour
 {
     public KeyCode downKey = KeyCode.S;          // 또는 KeyCode.DownArrow
-    public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode jumpKey = KeyCode.LeftControl;
     public float ignoreTime = 0.25f;             // 이 시간 동안 충돌 무시
     public LayerMask oneWayMask;                 // OneWayPlatform 레이어
+    public GameObject groundCheck;
 
     private Collider2D playerCol;
 
@@ -45,6 +46,7 @@ public class PlayerDropThroughOneWay : MonoBehaviour
 
         // 2) 입력 체크: 아래+점프
         if (Input.GetKey(downKey) == true && Input.GetKeyDown(jumpKey) == true)
+        //if (Input.GetKeyDown(jumpKey) == true)
         {
             TryDrop();
         }
@@ -53,7 +55,8 @@ public class PlayerDropThroughOneWay : MonoBehaviour
     private void TryDrop()
     {
         // 발밑으로 아주 짧게 Raycast 해서 "현재 서있는" OneWayPlatform 찾기
-        Vector2 origin = (Vector2)transform.position + Vector2.down * 0.1f;
+        //Vector2 origin = (Vector2)transform.position + Vector2.down * 0.1f;
+        Vector2 origin = (Vector2)groundCheck.transform.position;
         RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, 0.2f, oneWayMask);
 
         if (hit.collider == null)
