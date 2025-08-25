@@ -45,8 +45,8 @@ public class PlayerDropThroughOneWay : MonoBehaviour
         }
 
         // 2) 입력 체크: 아래+점프
-        if (Input.GetKey(downKey) == true && Input.GetKeyDown(jumpKey) == true)
-        //if (Input.GetKeyDown(jumpKey) == true)
+        //if (Input.GetKey(downKey) == true && Input.GetKeyDown(jumpKey) == true)
+        if (Input.GetKeyDown(downKey) == true)
         {
             TryDrop();
         }

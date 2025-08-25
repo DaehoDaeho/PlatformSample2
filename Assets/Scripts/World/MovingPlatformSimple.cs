@@ -18,6 +18,9 @@ public class MovingPlatformSimple : MonoBehaviour
 
     void Awake()
     {
+        pointA.SetParent(null);
+        pointB.SetParent(null);
+
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
 
