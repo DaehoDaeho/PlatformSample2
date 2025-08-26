@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 1589647002}
-  parallaxMultiplier: {x: 0.2, y: 0.1}
+  parallaxMultiplier: {x: 0.1, y: 0.1}
 --- !u!1 &76616304
 GameObject:
   m_ObjectHideFlags: 0
@@ -4401,7 +4401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 1589647002}
-  parallaxMultiplier: {x: 0.2, y: 0.1}
+  parallaxMultiplier: {x: 0.1, y: 0.1}
 --- !u!1 &958927123
 GameObject:
   m_ObjectHideFlags: 0
@@ -4885,7 +4885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 1589647002}
-  parallaxMultiplier: {x: 0.2, y: 0.1}
+  parallaxMultiplier: {x: 0.1, y: 0.1}
 --- !u!1 &1041174736
 GameObject:
   m_ObjectHideFlags: 0
