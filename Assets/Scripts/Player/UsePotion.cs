@@ -16,7 +16,10 @@ public class UsePotion : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            health.TakeDamage(20);
+            if(health != null)
+            {
+                health.TakeDamage(20);
+            }
         }
     }
 }

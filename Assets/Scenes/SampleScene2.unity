@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 1589647002}
-  parallaxMultiplier: {x: 0.1, y: 0.1}
+  parallaxMultiplier: {x: 0.5, y: 0.5}
 --- !u!1 &76616304
 GameObject:
   m_ObjectHideFlags: 0
@@ -4401,7 +4401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 1589647002}
-  parallaxMultiplier: {x: 0.1, y: 0.1}
+  parallaxMultiplier: {x: 0.5, y: 0.5}
 --- !u!1 &958927123
 GameObject:
   m_ObjectHideFlags: 0
@@ -4885,7 +4885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 1589647002}
-  parallaxMultiplier: {x: 0.1, y: 0.1}
+  parallaxMultiplier: {x: 0.5, y: 0.5}
 --- !u!1 &1041174736
 GameObject:
   m_ObjectHideFlags: 0
@@ -5605,7 +5605,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 8.54, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5616,7 +5616,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 60, y: 10}
+  m_Size: {x: 56.31, y: 30}
   m_EdgeRadius: 0
 --- !u!4 &1450815577
 Transform:
@@ -5691,7 +5691,7 @@ GameObject:
   - component: {fileID: 1589647001}
   - component: {fileID: 1589647000}
   - component: {fileID: 1589647003}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -5785,9 +5785,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 187886726}
-  deadZoneSize: {x: 10, y: 4.5}
-  deadZoneOffset: {x: 1.8, y: 0.6}
-  followSpeed: 6
+  deadZoneSize: {x: 4.25, y: 3.84}
+  deadZoneOffset: {x: -0.07, y: -0.02}
+  followSpeed: 10
   levelBounds: {fileID: 1450815576}
 --- !u!1 &1614880440
 GameObject:
