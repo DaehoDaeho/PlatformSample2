@@ -27,7 +27,12 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player") == true)
         {
             // 컨트롤러 이름과 무관하게 좌표 전달(있으면 호출, 없으면 무시)
-            other.SendMessage("SetCheckpoint", (Vector2)transform.position, SendMessageOptions.DontRequireReceiver);
+            //other.SendMessage("SetCheckpoint", (Vector2)transform.position, SendMessageOptions.DontRequireReceiver);
+            PlayerRespawnController controller = other.GetComponent<PlayerRespawnController>();
+            if(controller != null)
+            {
+                controller.SetCheckpoint((Vector2)transform.position);
+            }
 
             if (isActivated == false)
             {

@@ -32,7 +32,7 @@ public class FadeScreen : MonoBehaviour
     void Start()
     {
         // 새 씬에 들어왔을 때 자동으로 밝아지게 하고 싶으면 주석 해제
-        // StartFadeIn(defaultDuration);
+         StartFadeIn(defaultDuration);
     }
 
     void Update()
