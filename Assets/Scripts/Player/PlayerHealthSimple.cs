@@ -89,6 +89,23 @@ public class PlayerHealthSimple : MonoBehaviour
         {
             isDead = true;
             // 움직임 스크립트가 있다면 PlayerRespawnController가 꺼줄 거예요.
+
+            if (hp <= 0)
+            {
+                // 1) 체력 회복(필요 시)
+                hp = maxHp;
+
+                // 2) Respawn 호출
+                PlayerRespawnController resp = GetComponent<PlayerRespawnController>();
+                if (resp != null)
+                {
+                    resp.RespawnNow();
+                }
+
+                // 3) (선택) 무적 시간
+                invincible = true;
+                invincibleEndTime = Time.time + 0.8f;
+            }
         }
 
         hitStunEndTime = Time.time + hitStunTime;
