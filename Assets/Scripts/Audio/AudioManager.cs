@@ -25,6 +25,8 @@ public class AudioManager : MonoBehaviour
     [Header("BGM 클립(선택)")]
     public AudioClip startBGM;       // 시작 시 재생할 배경음(있으면)
 
+    public GameObject audioPanel;
+
     [System.Serializable]
     public class SFXEntry
     {
@@ -50,6 +52,8 @@ public class AudioManager : MonoBehaviour
         SetMasterVolume(masterVolume);
         SetBGMVolume(bgmVolume);
         SetSFXVolume(sfxVolume);
+
+        HideAudioPanel();
     }
 
     void Start()
@@ -57,6 +61,25 @@ public class AudioManager : MonoBehaviour
         if (startBGM != null)
         {
             PlayBGM(startBGM);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) == true)
+        {
+            if(audioPanel != null)
+            {
+                audioPanel.SetActive(true);
+            }
+        }
+    }
+
+    public void HideAudioPanel()
+    {
+        if (audioPanel != null)
+        {
+            audioPanel.SetActive(false);
         }
     }
 

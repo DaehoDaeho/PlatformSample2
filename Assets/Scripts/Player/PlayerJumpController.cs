@@ -58,6 +58,7 @@ public class PlayerJumpController : MonoBehaviour
         {
             lastJumpPressedTime = Time.time;
             animator.SetTrigger("Jump");
+            AudioManager.Instance.PlaySFX("water");
         }
             
 
