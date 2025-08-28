@@ -34,6 +34,15 @@ public class PlayerHealthSimple : MonoBehaviour
         hp = Mathf.Clamp(hp, 0, maxHp);
     }
 
+    void Start()
+    {
+        // 시작 시 HP UI 동기화
+        if (HUDController.Instance != null)
+        {
+            HUDController.Instance.SetHP(hp, maxHp);
+        }
+    }
+
     void Update()
     {
         // 무적 시간 관리
@@ -73,6 +82,12 @@ public class PlayerHealthSimple : MonoBehaviour
 
         hp = Mathf.Max(0, hp - amount);
 
+        // HP가 변했다면 HUD 반영
+        if (HUDController.Instance != null)
+        {
+            HUDController.Instance.SetHP(hp, maxHp);
+        }
+
         // 넉백: 살짝 밀려나게
         rb.velocity = new Vector2(0.0f, 0.0f);
         rb.AddForce(knockback, ForceMode2D.Impulse);
@@ -100,6 +115,12 @@ public class PlayerHealthSimple : MonoBehaviour
                 if (resp != null)
                 {
                     resp.RespawnNow();
+                }
+
+                // HP가 변했다면 HUD 반영
+                if (HUDController.Instance != null)
+                {
+                    HUDController.Instance.SetHP(hp, maxHp);
                 }
 
                 // 3) (선택) 무적 시간
