@@ -28,10 +28,10 @@ public class Checkpoint : MonoBehaviour
         {
             // 컨트롤러 이름과 무관하게 좌표 전달(있으면 호출, 없으면 무시)
             //other.SendMessage("SetCheckpoint", (Vector2)transform.position, SendMessageOptions.DontRequireReceiver);
-            PlayerRespawnController controller = other.GetComponent<PlayerRespawnController>();
-            if(controller != null)
+            PlayerCheckpointSaver saver = other.GetComponent<PlayerCheckpointSaver>();
+            if(saver != null)
             {
-                controller.SetCheckpoint((Vector2)transform.position);
+                saver.SetCheckpoint((Vector2)transform.position);
             }
 
             if (isActivated == false)
