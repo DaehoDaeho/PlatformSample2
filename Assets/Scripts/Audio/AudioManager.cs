@@ -27,6 +27,10 @@ public class AudioManager : MonoBehaviour
 
     public GameObject audioPanel;
 
+    public Slider sliderMaster;
+    public Slider sliderBGM;
+    public Slider sliderSFX;
+
     [System.Serializable]
     public class SFXEntry
     {
@@ -49,11 +53,11 @@ public class AudioManager : MonoBehaviour
         }
 
         // 시작 볼륨 세팅
-        SetMasterVolume(masterVolume);
-        SetBGMVolume(bgmVolume);
-        SetSFXVolume(sfxVolume);
+        //SetMasterVolume(masterVolume);
+        //SetBGMVolume(bgmVolume);
+        //SetSFXVolume(sfxVolume);
 
-        HideAudioPanel();
+        //HideAudioPanel()
     }
 
     void Start()
@@ -79,6 +83,7 @@ public class AudioManager : MonoBehaviour
     {
         if (audioPanel != null)
         {
+            SaveSystem.SaveVolume(masterVolume, bgmVolume, sfxVolume);
             audioPanel.SetActive(false);
         }
     }
@@ -95,7 +100,7 @@ public class AudioManager : MonoBehaviour
     public void SetBGMVolume(float linear01)
     {
         float dB = LinearToDecibel(linear01);
-        masterMixer.SetFloat("BGMVol", dB);
+        masterMixer.SetFloat("BGMVol", dB);        
         bgmVolume = linear01;
     }
 
@@ -168,5 +173,12 @@ public class AudioManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void UpdateSlider()
+    {
+        sliderMaster.value = masterVolume;
+        sliderBGM.value = bgmVolume;
+        sliderSFX.value = sfxVolume;
     }
 }

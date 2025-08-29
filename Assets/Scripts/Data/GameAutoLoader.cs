@@ -66,5 +66,11 @@ public class GameAutoLoader : MonoBehaviour
             // 다른 씬이면 위치는 바꾸지 않고 코인/상태만 복원
             Debug.Log("저장된 씬과 현재 씬이 다릅니다. 코인만 복원합니다.");
         }
+
+        AudioManager.Instance.SetMasterVolume(data.masterVolume);
+        AudioManager.Instance.SetBGMVolume(data.bgmVolume);
+        AudioManager.Instance.SetSFXVolume(data.sfxVolume);
+        AudioManager.Instance.UpdateSlider();
+        AudioManager.Instance.HideAudioPanel();
     }
 }

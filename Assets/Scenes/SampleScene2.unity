@@ -4915,6 +4915,9 @@ MonoBehaviour:
   sfxVolume: 0.8
   startBGM: {fileID: 8300000, guid: b8662736bf1267942aad43c0d63d9130, type: 3}
   audioPanel: {fileID: 1610649236}
+  sliderMaster: {fileID: 21529526}
+  sliderBGM: {fileID: 386521577}
+  sliderSFX: {fileID: 1335460805}
   sfxList:
   - key: water
     clip: {fileID: 8300000, guid: b8662736bf1267942aad43c0d63d9130, type: 3}
@@ -6416,7 +6419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1053117627
 RectTransform:
   m_ObjectHideFlags: 0

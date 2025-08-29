@@ -12,4 +12,7 @@ public class SaveData
     public bool hasCheckpoint;    // 체크포인트 보유 여부
     public float checkpointX;     // 체크포인트 좌표
     public float checkpointY;
+    public float masterVolume;
+    public float bgmVolume;
+    public float sfxVolume;
 }
