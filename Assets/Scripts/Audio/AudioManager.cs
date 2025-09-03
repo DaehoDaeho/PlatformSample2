@@ -51,13 +51,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        // 시작 볼륨 세팅
-        //SetMasterVolume(masterVolume);
-        //SetBGMVolume(bgmVolume);
-        //SetSFXVolume(sfxVolume);
-
-        //HideAudioPanel()
     }
 
     void Start()
@@ -87,8 +80,6 @@ public class AudioManager : MonoBehaviour
             audioPanel.SetActive(false);
         }
     }
-
-    // --------- 볼륨 제어 (Slider OnValueChanged에 연결) ---------
 
     public void SetMasterVolume(float linear01)
     {
@@ -124,9 +115,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // ---------------- 재생 API ----------------
-
-    /// <summary>BGM을 교체해서 루프 재생.</summary>
     public void PlayBGM(AudioClip clip)
     {
         if (bgmSource == null)
@@ -142,7 +130,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    /// <summary>등록된 키로 효과음 재생.</summary>
     public void PlaySFX(string key)
     {
         if (sfxSource == null)
